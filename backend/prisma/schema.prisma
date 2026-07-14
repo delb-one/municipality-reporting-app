@@ -1,0 +1,69 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Category {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String?
+  reports     Report[]
+
+  @@map("categories")
+}
+
+model Office {
+  id      Int      @id @default(autoincrement())
+  name    String   @unique
+  reports Report[]
+
+  @@map("offices")
+}
+
+model Status {
+  id        Int              @id @default(autoincrement())
+  name      String           @unique
+  color     String
+  reports   Report[]
+  histories ReportHistory[]
+
+  @@map("statuses")
+}
+
+model Report {
+  id             String         @id @default(uuid()) @db.Uuid
+  practiceCode   String         @unique @map("practice_code")
+  firstname      String         @map("firstname")
+  lastname       String         @map("lastname")
+  email          String
+  phone          String?
+  street         String
+  description    String
+  privacyConsent Boolean        @map("privacy_consent")
+  categoryId     Int            @map("category_id")
+  officeId       Int?           @map("office_id")
+  statusId       Int            @map("status_id")
+  createdAt      DateTime       @default(now()) @map("created_at")
+  updatedAt      DateTime       @updatedAt @map("updated_at")
+  category       Category       @relation(fields: [categoryId], references: [id])
+  office         Office?        @relation(fields: [officeId], references: [id])
+  status         Status         @relation(fields: [statusId], references: [id])
+  histories      ReportHistory[]
+
+  @@map("reports")
+}
+
+model ReportHistory {
+  id        String   @id @default(uuid()) @db.Uuid
+  reportId  String   @db.Uuid @map("report_id")
+  statusId  Int      @map("status_id")
+  note      String?
+  createdAt DateTime @default(now()) @map("created_at")
+  report    Report   @relation(fields: [reportId], references: [id], onDelete: Cascade)
+  status    Status   @relation(fields: [statusId], references: [id])
+
+  @@map("report_history")
+}
