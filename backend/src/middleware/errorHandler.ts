@@ -1,7 +1,9 @@
 import type { NextFunction, Request, Response } from 'express';
 import { Prisma } from '@prisma/client';
+import { ZodError } from 'zod';
 
 import { AppError } from '../utils/app-error';
+import { ValidationError } from '../utils/validation-error';
 
 export function errorHandler(
   err: unknown,
@@ -9,10 +11,28 @@ export function errorHandler(
   res: Response,
   _next: NextFunction,
 ) {
+  if (err instanceof ValidationError) {
+    res.status(err.statusCode).json({
+      success: false,
+      message: err.message,
+      errors: err.issues,
+    });
+    return;
+  }
+
   if (err instanceof AppError) {
     res.status(err.statusCode).json({
       success: false,
       message: err.message,
+    });
+    return;
+  }
+
+  if (err instanceof ZodError) {
+    res.status(400).json({
+      success: false,
+      message: 'Validation failed',
+      errors: err.issues.map((issue) => issue.message),
     });
     return;
   }
