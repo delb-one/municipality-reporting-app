@@ -10,24 +10,24 @@ export default function Footer() {
         <div className="container">
           <div className="row g-4">
             <div className="col-lg-4 col-md-6">
-              <h4 className="h6 text-uppercase fw-bold text-white-50 mb-3">Comune di Esempio</h4>
-              <p className="small text-white-50 mb-1">Piazza del Municipio, 1 - 00100 Roma</p>
-              <p className="small text-white-50 mb-1">Codice Fiscale: 00000000000</p>
-              <p className="small text-white-50">Centralino: +39 06 123456</p>
+              <h4 className="h6 text-uppercase fw-bold text-white mb-3">Comune di Esempio</h4>
+              <p className="small text-white mb-1">Piazza del Municipio, 1 - 00100 Roma</p>
+              <p className="small text-white mb-1">Codice Fiscale: 00000000000</p>
+              <p className="small text-white">Centralino: +39 06 123456</p>
             </div>
             <div className="col-lg-4 col-md-6">
-              <h4 className="h6 text-uppercase fw-bold text-white-50 mb-3">Contatti e Assistenza</h4>
-              <ul className="list-unstyled small text-white-50">
+              <h4 className="h6 text-uppercase fw-bold text-white mb-3">Contatti e Assistenza</h4>
+              <ul className="list-unstyled small text-white">
                 <li className="mb-2">
                   <a
                     href="mailto:segnalazioni@comune.esempio.it"
-                    className="text-white-50 text-decoration-none"
+                    className="text-white text-decoration-none"
                   >
                     segnalazioni@comune.esempio.it
                   </a>
                 </li>
                 <li className="mb-2">
-                  <a href="mailto:comune.esempio@pec.it" className="text-white-50 text-decoration-none">
+                  <a href="mailto:comune.esempio@pec.it" className="text-white text-decoration-none">
                     comune.esempio@pec.it (PEC)
                   </a>
                 </li>
@@ -35,14 +35,14 @@ export default function Footer() {
               </ul>
             </div>
             <div className="col-lg-4 col-md-12">
-              <h4 className="h6 text-uppercase fw-bold text-white-50 mb-3">Link Utili</h4>
-              <ul className="list-unstyled small text-white-50">
+              <h4 className="h6 text-uppercase fw-bold text-white mb-3">Link Utili</h4>
+              <ul className="list-unstyled small text-white">
                 <li className="mb-2">
                   <a
                     href="https://developers.italia.it"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white-50 text-decoration-none"
+                    className="text-white text-decoration-none"
                   >
                     Developers Italia
                   </a>
@@ -52,13 +52,13 @@ export default function Footer() {
                     href="https://designers.italia.it"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white-50 text-decoration-none"
+                    className="text-white text-decoration-none"
                   >
                     Designers Italia
                   </a>
                 </li>
                 <li>
-                  <Link href="/dashboard" className="text-white-50 text-decoration-none">
+                  <Link href="/dashboard" className="text-white text-decoration-none">
                     Area Riservata Operatori
                   </Link>
                 </li>
@@ -75,17 +75,17 @@ export default function Footer() {
       >
         <div className="container">
           <div className="d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
-            <span className="text-white-50">
+            <span className="text-white">
               &copy; 2026 Portale Segnalazioni - Tutti i diritti riservati
             </span>
             <div className="d-flex gap-3">
-              <a href="#" className="text-white-50 text-decoration-none">
+              <a href="#" className="text-white text-decoration-none">
                 Privacy Policy
               </a>
-              <a href="#" className="text-white-50 text-decoration-none">
+              <a href="#" className="text-white text-decoration-none">
                 Note Legali
               </a>
-              <a href="#" className="text-white-50 text-decoration-none">
+              <a href="#" className="text-white text-decoration-none">
                 Accessibilità
               </a>
             </div>

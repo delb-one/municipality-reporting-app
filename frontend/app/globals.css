@@ -26,7 +26,7 @@ body {
   min-height: 100%;
   display: flex;
   flex-direction: column;
-  color: var(--foreground);
+  color: #1f2937;
   background: #f7f9fc;
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -35,6 +35,16 @@ body {
 
 main {
   background: #f7f9fc;
+}
+
+.text-muted,
+.text-secondary,
+.form-text,
+/* .small, */
+.card-subtitle,
+.list-group-item,
+.accordion-body {
+  color: #495057 !important;
 }
 
 .it-header-wrapper {

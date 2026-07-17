@@ -60,7 +60,7 @@ export default function Header() {
                 <div>
                   <div className="h4 fw-bold mb-0">Portale Segnalazioni</div>
                   <div
-                    className="text-white-50 small"
+                    className=" small"
                     style={{ fontSize: "0.75rem" }}
                   >
                     Servizio Civico Digitale del Cittadino
