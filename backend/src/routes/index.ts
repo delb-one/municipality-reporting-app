@@ -6,10 +6,12 @@ import { categoriesRouter } from './categories.routes';
 import { officesRouter } from './offices.routes';
 import { statusesRouter } from './statuses.routes';
 import { dashboardRouter } from './dashboard.routes';
+import { authRouter } from './auth.routes';
 
 export const apiRouter = Router();
 
 apiRouter.use('/health', healthRouter);
+apiRouter.use('/auth', authRouter);
 apiRouter.use('/reports', reportsRouter);
 apiRouter.use('/categories', categoriesRouter);
 apiRouter.use('/offices', officesRouter);

@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 import BootstrapJS from "./components/BootstrapJS";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
+import { AuthProvider } from "./context/AuthContext";
 
 export const metadata: Metadata = {
   title: "Portale Segnalazioni - Comune di Esempio",
@@ -30,11 +31,13 @@ export default function RootLayout({
     <html lang="it" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body className="d-flex flex-column min-vh-100">
         <BootstrapJS />
-        <Header />
-        <main className="flex-grow-1">
-          {children}
-        </main>
-        <Footer />
+        <AuthProvider>
+          <Header />
+          <main className="flex-grow-1">
+            {children}
+          </main>
+          <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

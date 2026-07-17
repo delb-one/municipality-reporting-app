@@ -16,8 +16,12 @@ import CategoryChart from "./components/CategoryChart";
 import StatusChart from "./components/StatusChart";
 import MonthChart from "./components/MonthChart";
 import Link from "next/link";
+import { useAuth } from "../context/AuthContext";
+import { useRouter } from "next/navigation";
 
 export default function DashboardPage() {
+  const { user } = useAuth();
+  const router = useRouter();
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [byCategory, setByCategory] = useState<ReportsByCategory[]>([]);
   const [byStatus, setByStatus] = useState<ReportsByStatus[]>([]);
@@ -25,7 +29,16 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Redirect if not authenticated
   useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user, router]);
+
+  useEffect(() => {
+    if (!user) return;
+    
     let mounted = true;
 
     async function loadDashboardData() {

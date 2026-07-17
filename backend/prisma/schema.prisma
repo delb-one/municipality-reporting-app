@@ -6,6 +6,12 @@ datasource db {
   provider = "postgresql"
 }
 
+enum UserRole {
+  OPERATORE
+  RESPONSABILE
+  AMMINISTRATORE
+}
+
 model Category {
   id          Int      @id @default(autoincrement())
   name        String   @unique
@@ -33,6 +39,20 @@ model Status {
   @@map("statuses")
 }
 
+model User {
+  id           String   @id @default(uuid()) @db.Uuid
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  firstname    String
+  lastname     String
+  role         UserRole @default(OPERATORE)
+  isActive     Boolean  @default(true) @map("is_active")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
+}
+
 model Report {
   id             String         @id @default(uuid()) @db.Uuid
   practiceCode   String         @unique @map("practice_code")
@@ -46,6 +66,7 @@ model Report {
   categoryId     Int            @map("category_id")
   officeId       Int?           @map("office_id")
   statusId       Int            @map("status_id")
+  operatorId     String?        @map("operator_id")
   createdAt      DateTime       @default(now()) @map("created_at")
   updatedAt      DateTime       @updatedAt @map("updated_at")
   category       Category       @relation(fields: [categoryId], references: [id])

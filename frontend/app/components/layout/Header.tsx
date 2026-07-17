@@ -2,16 +2,17 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useAuth } from "../../context/AuthContext";
 
-const navItems = [
+const publicNavItems = [
   { href: "/", label: "Home" },
   { href: "/new-report", label: "Nuova Segnalazione" },
   { href: "/search", label: "Consulta Segnalazione" },
-  { href: "/dashboard", label: "Dashboard Operatore" },
 ];
 
 export default function Header() {
   const pathname = usePathname();
+  const { user, logout } = useAuth();
 
   return (
     <header className="it-header-wrapper shadow-sm">
@@ -75,11 +76,6 @@ export default function Header() {
       {/* Header Nav */}
       <nav
         className="navbar sticky-top navbar-expand-lg navbar-light bg-light border-bottom border-light-subtle py-2"
-        // style={{
-        //   position: "sticky",
-        //   top: 0,
-        //   zIndex: 1050,
-        // }}
       >
         <div className="container">
           <button
@@ -94,8 +90,8 @@ export default function Header() {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav gap-1">
-              {navItems.map((item) => {
+            <ul className="navbar-nav gap-1 me-auto">
+              {publicNavItems.map((item) => {
                 const isActive =
                   pathname === item.href ||
                   (item.href !== "/" && pathname.startsWith(item.href));
@@ -113,6 +109,34 @@ export default function Header() {
                 );
               })}
             </ul>
+            
+            {user && (
+              <ul className="navbar-nav">
+                <li className="nav-item dropdown">
+                  <button
+                    className="nav-link dropdown-toggle btn btn-link text-dark fw-medium"
+                    id="navbarDropdown"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    {user.firstname} {user.lastname}
+                  </button>
+                  <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <li>
+                      <Link href="/dashboard" className="dropdown-item">
+                        Dashboard Operatore
+                      </Link>
+                    </li>
+                    <li><hr className="dropdown-divider" /></li>
+                    <li>
+                      <button className="dropdown-item text-danger" onClick={logout}>
+                        Esci
+                      </button>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            )}
           </div>
         </div>
       </nav>

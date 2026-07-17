@@ -1,4 +1,9 @@
 import { prisma } from '../src/config/prisma';
+import bcrypt from 'bcryptjs';
+
+async function hashPassword(password: string): Promise<string> {
+  return bcrypt.hash(password, 10);
+}
 
 async function main() {
   const categories = [
@@ -50,6 +55,50 @@ async function main() {
       create: status,
     });
   }
+
+  // Seed utenti iniziali
+  const adminPasswordHash = await hashPassword('admin123');
+  const responsabilePasswordHash = await hashPassword('responsabile123');
+  const operatorePasswordHash = await hashPassword('operatore123');
+
+  await prisma.user.upsert({
+    where: { email: 'admin@comune.it' },
+    update: {},
+    create: {
+      email: 'admin@comune.it',
+      passwordHash: adminPasswordHash,
+      firstname: 'Amministratore',
+      lastname: 'Sistema',
+      role: 'AMMINISTRATORE',
+      isActive: true,
+    },
+  });
+
+  await prisma.user.upsert({
+    where: { email: 'responsabile@comune.it' },
+    update: {},
+    create: {
+      email: 'responsabile@comune.it',
+      passwordHash: responsabilePasswordHash,
+      firstname: 'Responsabile',
+      lastname: 'Uffici',
+      role: 'RESPONSABILE',
+      isActive: true,
+    },
+  });
+
+  await prisma.user.upsert({
+    where: { email: 'operatore@comune.it' },
+    update: {},
+    create: {
+      email: 'operatore@comune.it',
+      passwordHash: operatorePasswordHash,
+      firstname: 'Mario',
+      lastname: 'Rossi',
+      role: 'OPERATORE',
+      isActive: true,
+    },
+  });
 }
 
 main()

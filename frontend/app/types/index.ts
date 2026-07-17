@@ -70,3 +70,18 @@ export type ReportsByMonth = {
   month: string; // YYYY-MM
   total: number;
 };
+
+export type AuthUser = {
+  id: string;
+  email: string;
+  firstname: string;
+  lastname: string;
+  role: string;
+};
+
+export type AuthContextType = {
+  user: AuthUser | null;
+  token: string | null;
+  login: (user: AuthUser, token: string) => void;
+  logout: () => void;
+};
