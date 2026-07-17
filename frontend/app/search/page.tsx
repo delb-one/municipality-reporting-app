@@ -14,7 +14,7 @@ export default function SearchPage() {
   return (
     <Suspense
       fallback={
-        <div className="container py-5">
+        <div className="bg-white py-5">
           <LoadingSpinner message="Caricamento..." />
         </div>
       }

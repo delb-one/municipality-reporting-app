@@ -1,19 +1,37 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/new-report", label: "Nuova Segnalazione" },
+  { href: "/search", label: "Consulta Segnalazione" },
+  { href: "/dashboard", label: "Dashboard Operatore" },
+];
 
 export default function Header() {
+  const pathname = usePathname();
+
   return (
     <header className="it-header-wrapper shadow-sm">
       {/* Slim Header */}
       <div
         className="it-header-slim-wrapper py-2"
-        style={{ backgroundColor: "#002C54", color: "#fff", fontSize: "0.85rem" }}
+        style={{
+          backgroundColor: "#002C54",
+          color: "#fff",
+          fontSize: "0.85rem",
+        }}
       >
         <div className="container">
           <div className="d-flex justify-content-between align-items-center">
             <a href="#" className="text-white fw-bold text-decoration-none">
               Comune di Esempio
             </a>
-            <span className="text-white-50 font-monospace small">Design System PA</span>
+            <span className="text-white-50 font-monospace small">
+              Design System PA
+            </span>
           </div>
         </div>
       </div>
@@ -26,7 +44,10 @@ export default function Header() {
         <div className="container">
           <div className="d-flex align-items-center">
             <div className="it-brand-wrapper">
-              <Link href="/" className="d-flex align-items-center text-white text-decoration-none">
+              <Link
+                href="/"
+                className="d-flex align-items-center text-white text-decoration-none"
+              >
                 <svg
                   className="text-white me-3"
                   width="40"
@@ -38,7 +59,10 @@ export default function Header() {
                 </svg>
                 <div>
                   <div className="h4 fw-bold mb-0">Portale Segnalazioni</div>
-                  <div className="text-white-50 small" style={{ fontSize: "0.75rem" }}>
+                  <div
+                    className="text-white-50 small"
+                    style={{ fontSize: "0.75rem" }}
+                  >
                     Servizio Civico Digitale del Cittadino
                   </div>
                 </div>
@@ -49,7 +73,14 @@ export default function Header() {
       </div>
 
       {/* Header Nav */}
-      <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom border-light-subtle py-2">
+      <nav
+        className="navbar sticky-top navbar-expand-lg navbar-light bg-light border-bottom border-light-subtle py-2"
+        // style={{
+        //   position: "sticky",
+        //   top: 0,
+        //   zIndex: 1050,
+        // }}
+      >
         <div className="container">
           <button
             className="navbar-toggler"
@@ -64,26 +95,23 @@ export default function Header() {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav gap-1">
-              <li className="nav-item">
-                <Link href="/" className="nav-link px-3 text-dark fw-medium">
-                  Home
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/new-report" className="nav-link px-3 text-dark fw-medium">
-                  Nuova Segnalazione
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/search" className="nav-link px-3 text-dark fw-medium">
-                  Consulta Segnalazione
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link href="/dashboard" className="nav-link px-3 text-dark fw-medium">
-                  Dashboard Operatore
-                </Link>
-              </li>
+              {navItems.map((item) => {
+                const isActive =
+                  pathname === item.href ||
+                  (item.href !== "/" && pathname.startsWith(item.href));
+
+                return (
+                  <li key={item.href} className="nav-item">
+                    <Link
+                      href={item.href}
+                      className={`nav-link px-3 fw-medium ${isActive ? "text-primary" : "text-dark"}`}
+                      style={isActive ? { fontWeight: 700 } : undefined}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>

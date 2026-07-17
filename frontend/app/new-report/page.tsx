@@ -193,7 +193,7 @@ export default function NewReportPage() {
 
   // ── Form state ────────────────────────────────────────────────────────────
   return (
-    <div className="container py-5">
+    <div className=" py-5 bg-white">
       <div className="row justify-content-center">
         <div className="col-lg-8">
           {/* Breadcrumb */}

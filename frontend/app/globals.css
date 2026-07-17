@@ -27,10 +27,21 @@ body {
   display: flex;
   flex-direction: column;
   color: var(--foreground);
-  background: var(--background);
+  background: #f7f9fc;
   font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+main {
+  background: #f7f9fc;
+}
+
+.it-header-wrapper {
+  position: sticky !important;
+  top: 0;
+  z-index: 1030;
+  width: 100%;
 }
 
 * {
