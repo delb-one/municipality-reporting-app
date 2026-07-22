@@ -1,1 +1,23 @@
-<p>faq works!</p>
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="h3 fw-bold">Domande frequenti</h2>
+
+      <p class="text-secondary">Le risposte alle domande più comuni sul servizio.</p>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-lg-9">
+        <div class="faq-wrapper">
+          <it-accordion
+            *ngFor="let faq of faqItems; let first = first"
+            [title]="faq.title"
+            [opened]="first"
+          >
+            {{ faq.content }}
+          </it-accordion>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
