@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ItTimelineComponent } from 'design-angular-kit';
 
 @Component({
   selector: 'app-how-it-works',
-  imports: [CommonModule, ItTimelineComponent],
+  imports: [CommonModule],
   templateUrl: './how-it-works.html',
   styleUrl: './how-it-works.css',
 })

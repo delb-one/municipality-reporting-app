@@ -1,6 +1,8 @@
 export interface Report {
   id: string;
 
+  practiceCode: string;
+
   firstname: string;
 
   lastname: string;
