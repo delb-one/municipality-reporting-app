@@ -1,1 +1,15 @@
-<p>kpi-strip works!</p>
+<section class="bg-light border-bottom">
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-6 col-md-3 py-4" *ngFor="let item of stats">
+        <div class="fs-2 fw-bold text-primary">
+          {{ item.value }}
+        </div>
+
+        <div class="small text-secondary">
+          {{ item.label }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
