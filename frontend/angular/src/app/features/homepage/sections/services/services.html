@@ -1,1 +1,105 @@
-<p>services works!</p>
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="h3 fw-bold">I Servizi del Portale</h2>
+
+      <p class="text-secondary">
+        Tutto ciò di cui hai bisogno per comunicare con l'amministrazione comunale
+      </p>
+    </div>
+
+    <div class="row g-4 justify-content-center">
+      <!-- Nuova Segnalazione -->
+      <div class="col-md-6 col-lg-4">
+        <it-card class="service-card">
+          <div class="service-header service-primary">
+            <div class="service-icon">
+              <it-icon name="plus-circle"></it-icon>
+            </div>
+
+            <h3 class="it-card-title text-white">Nuova Segnalazione</h3>
+
+            <p class="text-white opacity-75 mb-0">
+              Segnala buche, guasti illuminazione, rifiuti abbandonati e altre problematiche sul
+              territorio.
+            </p>
+          </div>
+
+          <div class="it-card-body">
+            <ul class="list-unstyled text-secondary small">
+              <li class="mb-2">✔ Processo guidato e semplice</li>
+
+              <li class="mb-2">✔ Codice pratica immediato</li>
+
+              <li>✔ Gestione da parte degli uffici competenti</li>
+            </ul>
+
+            <a itButton="primary" class="w-100" routerLink="/new-report">
+              Inizia la Segnalazione
+            </a>
+          </div>
+        </it-card>
+      </div>
+
+      <!-- Consulta Segnalazione -->
+      <div class="col-md-6 col-lg-4">
+        <it-card class="service-card">
+          <div class="service-header service-success">
+            <div class="service-icon">
+              <it-icon name="search"></it-icon>
+            </div>
+
+            <h3 class="it-card-title text-white">Consulta Segnalazione</h3>
+
+            <p class="text-white opacity-75 mb-0">
+              Inserisci il codice pratica per visualizzare stato e storico completo.
+            </p>
+          </div>
+
+          <div class="it-card-body">
+            <ul class="list-unstyled text-secondary small">
+              <li class="mb-2">✔ Stato aggiornato</li>
+
+              <li class="mb-2">✔ Timeline modifiche</li>
+
+              <li>✔ Ufficio assegnato e note</li>
+            </ul>
+
+            <a itButton="success" class="w-100" routerLink="/search"> Cerca la tua pratica </a>
+          </div>
+        </it-card>
+      </div>
+
+      <!-- Dashboard -->
+      <div class="col-md-6 col-lg-4">
+        <it-card class="service-card">
+          <div class="service-header service-dashboard">
+            <div class="service-icon">
+              <it-icon name="chart-line"></it-icon>
+            </div>
+
+            <h3 class="it-card-title text-white">Area Operatori</h3>
+
+            <p class="text-white opacity-75 mb-0">
+              Dashboard riservata agli operatori comunali per gestire le segnalazioni.
+            </p>
+          </div>
+
+          <div class="it-card-body">
+            <ul class="list-unstyled text-secondary small">
+              <li class="mb-2">✔ KPI e statistiche</li>
+
+              <li class="mb-2">✔ Gestione stati</li>
+
+              <li>✔ Reportistica</li>
+            </ul>
+
+            <a itButton class="w-100 dashboard-btn" routerLink="/dashboard">
+              Accedi alla Dashboard
+            </a>
+          </div>
+        </it-card>
+      </div>
+    </div>
+  </div>
+</section>

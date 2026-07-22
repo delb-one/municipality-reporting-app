@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { ItIconComponent, ItCardComponent } from "design-angular-kit";
 
 @Component({
   selector: 'app-services',
-  imports: [],
+  imports: [ItIconComponent, ItCardComponent],
   templateUrl: './services.html',
   styleUrl: './services.css',
 })
