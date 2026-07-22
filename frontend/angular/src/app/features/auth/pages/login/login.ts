@@ -3,7 +3,6 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../core/auth/auth.service';
 
-
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -35,12 +34,11 @@ export class Login {
 
     this.authService.login(this.form.getRawValue()).subscribe({
       next: (response) => {
-        this.authService.saveToken(response.data.token);
-
         console.log(response);
 
         this.router.navigate(['/']);
       },
+
       error: (err) => {
         console.error(err);
 
@@ -48,6 +46,7 @@ export class Login {
 
         this.loading = false;
       },
+
       complete: () => {
         this.loading = false;
       },
