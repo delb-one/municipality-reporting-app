@@ -70,3 +70,23 @@ a {
     color-scheme: dark;
   }
 }
+.navbar .nav-link {
+  position: relative;
+  transition: color .2s ease;
+}
+
+.navbar .nav-link::after {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: -.6rem;
+  height: 3px;
+  background: var(--bs-primary);
+  transform: scaleX(0);
+  transition: transform .2s ease;
+}
+
+.navbar .nav-link.active::after {
+  transform: scaleX(1);
+}

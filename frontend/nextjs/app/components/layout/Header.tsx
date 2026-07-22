@@ -60,10 +60,7 @@ export default function Header() {
                 </svg>
                 <div>
                   <div className="h4 fw-bold mb-0">Portale Segnalazioni</div>
-                  <div
-                    className=" small"
-                    style={{ fontSize: "0.75rem" }}
-                  >
+                  <div className=" small" style={{ fontSize: "0.75rem" }}>
                     Servizio Civico Digitale del Cittadino
                   </div>
                 </div>
@@ -74,9 +71,7 @@ export default function Header() {
       </div>
 
       {/* Header Nav */}
-      <nav
-        className="navbar sticky-top navbar-expand-lg navbar-light bg-light border-bottom border-light-subtle py-2"
-      >
+      <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light border-bottom border-light-subtle py-2">
         <div className="container">
           <button
             className="navbar-toggler"
@@ -100,8 +95,10 @@ export default function Header() {
                   <li key={item.href} className="nav-item">
                     <Link
                       href={item.href}
-                      className={`nav-link px-3 fw-medium ${isActive ? "text-primary" : "text-dark"}`}
-                      style={isActive ? { fontWeight: 700 } : undefined}
+                      className={`nav-link px-3 fw-semibold ${
+                        isActive ? "active text-primary" : "text-dark"
+                      }`}
+                      aria-current={isActive ? "page" : undefined}
                     >
                       {item.label}
                     </Link>
@@ -109,7 +106,7 @@ export default function Header() {
                 );
               })}
             </ul>
-            
+
             {user && (
               <ul className="navbar-nav">
                 <li className="nav-item dropdown">
@@ -121,15 +118,23 @@ export default function Header() {
                   >
                     {user.firstname} {user.lastname}
                   </button>
-                  <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <ul
+                    className="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="navbarDropdown"
+                  >
                     <li>
                       <Link href="/dashboard" className="dropdown-item">
                         Dashboard Operatore
                       </Link>
                     </li>
-                    <li><hr className="dropdown-divider" /></li>
                     <li>
-                      <button className="dropdown-item text-danger" onClick={logout}>
+                      <hr className="dropdown-divider" />
+                    </li>
+                    <li>
+                      <button
+                        className="dropdown-item text-danger"
+                        onClick={logout}
+                      >
                         Esci
                       </button>
                     </li>

@@ -1,0 +1,43 @@
+<div class="login-container">
+  <h2>Login Operatore</h2>
+
+  <form [formGroup]="form" (ngSubmit)="login()">
+
+    <div class="mb-3">
+      <label>Email</label>
+
+      <input
+        type="email"
+        formControlName="email"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label>Password</label>
+
+      <input
+        type="password"
+        formControlName="password"
+      />
+    </div>
+
+    @if (error) {
+      <p class="error">
+        {{ error }}
+      </p>
+    }
+
+    <button
+      type="submit"
+      [disabled]="loading">
+
+      @if (!loading) {
+        Login
+      } @else {
+        Accesso...
+      }
+
+    </button>
+
+  </form>
+</div>
