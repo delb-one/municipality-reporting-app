@@ -7,6 +7,7 @@ import {
   ItNavBarItemComponent,
   ItCheckboxComponent,
   ItRadioButtonComponent,
+  ItButtonDirective,
 } from 'design-angular-kit';
 
 @Component({
@@ -16,6 +17,7 @@ import {
     ItIconComponent,
     ItNavBarItemComponent,
     RouterLink,
+    ItButtonDirective,
     RouterLinkActive,
     ItCheckboxComponent,
     ItRadioButtonComponent,

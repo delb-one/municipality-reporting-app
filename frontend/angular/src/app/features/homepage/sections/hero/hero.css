@@ -1,0 +1,22 @@
+.municipality-hero {
+  background: linear-gradient(135deg, #002c54 0%, #003d7a 60%, #0059a6 100%);
+}
+
+.hero-icon {
+  width: 280px;
+  height: 280px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(255, 255, 255, 0.07);
+
+  border: 2px solid rgba(255, 255, 255, 0.15);
+
+  color: white;
+}
+
+

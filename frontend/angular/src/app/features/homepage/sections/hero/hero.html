@@ -1,0 +1,71 @@
+<!-- <section class="it-hero-wrapper bg-primary">
+  <div class="img-responsive-wrapper">
+    <div class="img-responsive">
+      <div class="img-wrapper position-relative">
+        <img src="/images/hero.jpg" alt="Municipio" />
+
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="it-hero-text-wrapper bg-dark">
+          <span class="it-Categoria"> Comune di Sacile </span>
+
+          <h1>Portale Segnalazioni</h1>
+
+          <p class="d-none d-lg-block">
+            Invia una segnalazione e monitora lo stato della tua richiesta.
+          </p>
+
+          <button class="mb-5" itButton="primary" size="sm" [routerLink]="['/new-report']">
+            Nuova segnalazione
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+ -->
+<section class="it-hero-wrapper municipality-hero">
+  <div class="container py-5 py-lg-6">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <span class="badge bg-white text-dark mb-3"> Servizio Digitale del Comune </span>
+
+        <h1 class="display-5 fw-bold text-white">
+          Segnala un problema
+
+          <span class="d-block text-white opacity-75"> sul territorio </span>
+        </h1>
+
+        <p class="lead text-white opacity-75">
+          Un canale diretto tra cittadini e amministrazione comunale. Invia la tua segnalazione,
+          monitora lo stato e contribuisci a migliorare il territorio.
+        </p>
+
+        <div class="d-flex flex-wrap gap-3 mt-4 align-items-center">
+          <a itButton="primary" size="lg" routerLink="/new-report" class="hero-button d-flex align-items-center gap-2">
+            <it-icon name="plus-circle"></it-icon>
+            <span>Nuova Segnalazione</span>
+          </a>
+
+          <a itButton="outline-light" size="lg" routerLink="/search" class="hero-button d-flex align-items-center gap-2">
+            <it-icon name="search"></it-icon>
+            <span>Consulta pratica</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-lg-5 d-none d-lg-flex justify-content-center">
+        <div class="hero-icon">
+          <it-icon name="map-marker-circle" size="xl"> </it-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
