@@ -1,1 +1,47 @@
-<p>how-it-works works!</p>
+<section class="py-5 bg-light">
+
+  <div class="container">
+
+    <div class="text-center mb-5">
+
+      <h2 class="h3 fw-bold">
+        Come funziona
+      </h2>
+
+      <p class="text-secondary">
+        Segui il percorso della tua segnalazione
+      </p>
+
+    </div>
+
+    <div class="timeline">
+
+      <div
+        class="timeline-item"
+        *ngFor="let step of steps">
+
+        <div class="timeline-marker">
+
+          {{step.number}}
+
+        </div>
+
+        <div class="timeline-content">
+
+          <h3 class="h5 fw-semibold">
+            {{step.title}}
+          </h3>
+
+          <p class="text-secondary mb-0">
+            {{step.description}}
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
