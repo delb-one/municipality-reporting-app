@@ -1,0 +1,29 @@
+.contact-card {
+  height: 100%;
+  transition: all 0.25s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-4px);
+}
+
+.contact-icon {
+  width: 64px;
+  height: 64px;
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #eef4fc;
+
+  color: var(--bs-primary);
+}
+
+.contact-icon it-icon {
+  font-size: 1.5rem;
+}
