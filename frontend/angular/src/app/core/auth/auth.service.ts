@@ -10,6 +10,7 @@ import { LoginResponse } from '../../features/auth/models/login-response';
 import { AuthStorageService } from './auth-storage.service';
 import { ApiWrapperResponse } from '../models/api-wrapper.model';
 import { User } from '../../features/auth/models/user.model';
+import { ItNotificationService } from 'design-angular-kit';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,7 @@ export class AuthService {
   private readonly http = inject(HttpClient);
 
   private readonly authStorage = inject(AuthStorageService);
+  private readonly notification = inject(ItNotificationService);
   private readonly _currentUser = signal<User | null>(this.authStorage.getUser());
   readonly currentUser = this._currentUser.asReadonly();
   /**
@@ -39,6 +41,10 @@ export class AuthService {
       .pipe(
         tap((response) => {
           this.saveToken(response.data.token);
+          this.notification.success(
+            'Accesso effettuato',
+            `Bentornato ${response.data.user.firstname}!`,
+          );
           this.authStorage.setUser(response.data.user);
           this._currentUser.set(response.data.user);
         }),
@@ -49,6 +55,7 @@ export class AuthService {
    * Logout.
    */
   logout(): void {
+    this.notification.info('Arrivederci!');
     this.clearSession();
   }
 

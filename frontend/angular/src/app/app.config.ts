@@ -8,13 +8,20 @@ import { loggingInterceptor } from './core/interceptors/logging.interceptor';
 import { loadingInterceptor } from './core/interceptors/loading.interceptor';
 import { errorInterceptor } from './core/interceptors/error.interceptor';
 import { authInterceptor } from './core/auth/auth.interceptor';
+import { notificationInterceptor } from './core/interceptors/notification.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideHttpClient(
-      withInterceptors([loggingInterceptor, loadingInterceptor, authInterceptor, errorInterceptor]),
+      withInterceptors([
+        loggingInterceptor,
+        loadingInterceptor,
+        authInterceptor,
+        notificationInterceptor,
+        errorInterceptor,
+      ]),
     ),
     provideDesignAngularKit(),
   ],
