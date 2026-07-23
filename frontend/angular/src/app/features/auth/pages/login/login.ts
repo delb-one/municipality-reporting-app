@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../../core/auth/auth.service';
+import { LoadingService } from '../../../../core/services/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +12,10 @@ import { AuthService } from '../../../../core/auth/auth.service';
   styleUrl: './login.css',
 })
 export class Login {
-  private fb = inject(FormBuilder);
-  private authService = inject(AuthService);
   private router = inject(Router);
-
-  loading = false;
+  private fb = inject(FormBuilder);
+  auth = inject(AuthService);
+  loading = inject(LoadingService);
   error = '';
 
   form = this.fb.nonNullable.group({
@@ -29,10 +29,9 @@ export class Login {
       return;
     }
 
-    this.loading = true;
     this.error = '';
 
-    this.authService.login(this.form.getRawValue()).subscribe({
+    this.auth.login(this.form.getRawValue()).subscribe({
       next: (response) => {
         console.log(response);
 
@@ -43,13 +42,13 @@ export class Login {
         console.error(err);
 
         this.error = 'Email o password non validi';
-
-        this.loading = false;
-      },
-
-      complete: () => {
-        this.loading = false;
       },
     });
+  }
+
+  logout(): void {
+    this.auth.logout();
+
+    this.router.navigate(['/']);
   }
 }

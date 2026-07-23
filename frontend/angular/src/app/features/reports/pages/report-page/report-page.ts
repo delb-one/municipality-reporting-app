@@ -11,15 +11,15 @@ import { OfficesService } from '../../../../core/services/offices.service';
   styleUrl: './report-page.css',
 })
 export class ReportPage {
-  // categoriesService = inject(CategoriesService);
+  categoriesService = inject(CategoriesService);
   reportsService = inject(ReportService);
   statusesService = inject(StatusesService);
-  // officesService = inject(OfficesService);
+  officesService = inject(OfficesService);
 
   constructor() {
     // this.getAllCategories();
-    this.getAllReports();
-    this.getAllStatuses();
+    // this.getAllReports();
+    // this.getAllStatuses();
     // this.getAllOffices();
   }
 
@@ -29,17 +29,17 @@ export class ReportPage {
   //   });
   // }
 
-  getAllReports() {
-    this.reportsService.getAll().subscribe((response) => {
-      console.log(response.data);
-    });
-  }
+  // getAllReports() {
+  //   this.reportsService.getAll().subscribe((response) => {
+  //     console.log(response.data);
+  //   });
+  // }
 
-  getAllStatuses() {
-    this.statusesService.getAll().subscribe((response) => {
-      console.log(response.data);
-    });
-  }
+  // getAllStatuses() {
+  //   this.statusesService.getAll().subscribe((response) => {
+  //     console.log(response.data);
+  //   });
+  // }
 
   // getAllOffices() {
   //   this.officesService.getAll().subscribe((response) => {

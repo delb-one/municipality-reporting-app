@@ -2,23 +2,16 @@
   <h2>Login Operatore</h2>
 
   <form [formGroup]="form" (ngSubmit)="login()">
-
     <div class="mb-3">
       <label>Email</label>
 
-      <input
-        type="email"
-        formControlName="email"
-      />
+      <input type="email" formControlName="email" />
     </div>
 
     <div class="mb-3">
       <label>Password</label>
 
-      <input
-        type="password"
-        formControlName="password"
-      />
+      <input type="password" formControlName="password" />
     </div>
 
     @if (error) {
@@ -27,17 +20,14 @@
       </p>
     }
 
-    <button
-      type="submit"
-      [disabled]="loading">
+    @if (!auth.isAuthenticated()) {
+      <button type="submit" [disabled]="loading.isLoading()">
+        @if (loading.isLoading()) {
+          <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"> </span>
+        }
 
-      @if (!loading) {
         Login
-      } @else {
-        Accesso...
-      }
-
-    </button>
-
+      </button>
+    }
   </form>
 </div>

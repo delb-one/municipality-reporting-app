@@ -6,15 +6,10 @@ import { Homepage } from './features/homepage/homepage';
 
 export const routes: Routes = [
   { path: '', component: Homepage },
+  { path: 'new-report', component: ReportPage },
+  { path: 'search', component: SearchReportPage },
   {
     path: 'login',
     component: Login,
   },
-  { path: 'new-report', component: ReportPage },
-  { path: 'search', component: SearchReportPage },
-  // {
-  //   path: '',
-  //   redirectTo: '/login',
-  //   pathMatch: 'full',
-  // },
 ];

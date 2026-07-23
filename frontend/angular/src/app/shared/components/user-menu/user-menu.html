@@ -1,0 +1,28 @@
+<div class="dropdown">
+  <button
+    class="btn btn-primary btn-sm dropdown-toggle"
+    type="button"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+    size="sm"
+  >
+    <it-icon name="user" size="sm"></it-icon>{{ auth.currentUser()?.firstname }}
+    {{ auth.currentUser()?.lastname }}
+  </button>
+
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li>
+      <button class="dropdown-item">Profilo</button>
+    </li>
+
+    <li>
+      <button class="dropdown-item">Le mie segnalazioni</button>
+    </li>
+
+    <li><hr class="dropdown-divider" /></li>
+
+    <li>
+      <button class="dropdown-item text-danger" (click)="logout()">Logout</button>
+    </li>
+  </ul>
+</div>

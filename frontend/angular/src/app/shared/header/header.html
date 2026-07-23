@@ -2,18 +2,11 @@
   <it-header
     slimTitle="Ente di appartenenza"
     slimTitleLink="https://italia.github.io/design-angular-kit"
-    loginStyle="full"
+    loginStyle="none"
     [light]="light"
     [showSearch]="search"
     [sticky]="sticky"
   >
-    <!-- <ul class="link-list" slimLinkList>
-      <li><a class="dropdown-item list-item" href="#">Link 1</a></li>
-      <li><a class="list-item active" href="#" aria-current="page">Link 2 (Attivo)</a></li>
-    </ul>
-    <ng-container slimRightZone>
-      <it-language-switcher mode="nav"></it-language-switcher>
-    </ng-container> -->
     <ng-container brand>
       <a href="#">
         <it-icon name="pa"></it-icon>
@@ -25,26 +18,7 @@
         </div>
       </a>
     </ng-container>
-    <!-- <div class="it-socials d-none d-md-flex" rightZone>
-      <span>Seguici su</span>
-      <ul>
-        <li>
-          <a href="#" aria-label="Facebook" target="_blank">
-            <it-icon name="facebook"></it-icon>
-          </a>
-        </li>
-        <li>
-          <a href="#" aria-label="Github" target="_blank">
-            <it-icon name="github"></it-icon>
-          </a>
-        </li>
-        <li>
-          <a href="#" aria-label="Twitter" target="_blank">
-            <it-icon name="twitter"></it-icon>
-          </a>
-        </li>
-      </ul>
-    </div> -->
+
     <ng-container navItems>
       <it-navbar-item>
         <a
@@ -69,11 +43,12 @@
         </a>
       </it-navbar-item>
 
-      <!-- spacer -->
-      <it-navbar-item class="ms-auto"> </it-navbar-item>
-
-      <it-navbar-item>
-        <button itButton="primary" size="sm" [routerLink]="['/login']">Accedi</button>
+      <it-navbar-item class="ms-auto">
+        @if (auth.isAuthenticated()) {
+          <app-user-menu></app-user-menu>
+        } @else {
+          <button itButton="primary" size="sm" [routerLink]="['/login']">Accedi</button>
+        }
       </it-navbar-item>
     </ng-container>
   </it-header>
