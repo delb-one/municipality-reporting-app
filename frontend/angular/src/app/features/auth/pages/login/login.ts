@@ -45,10 +45,4 @@ export class Login {
       },
     });
   }
-
-  logout(): void {
-    this.auth.logout();
-
-    this.router.navigate(['/']);
-  }
 }

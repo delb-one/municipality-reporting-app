@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-
+import { inject, Injectable } from '@angular/core';
+import { Observable, tap } from 'rxjs';
 
 import { Report } from '../../features/reports/models/report.model';
 import { CreateReportDto } from './models/create-report.dto';
@@ -11,6 +10,7 @@ import { UpdateOfficeDto } from './models/update-office.dto';
 import { ApiWrapperResponse } from '../../core/models/api-wrapper.model';
 import { ReportHistory } from './models/report-history.model';
 import { API } from '../../core/api/api.config';
+import { ItNotificationService } from 'design-angular-kit';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +18,8 @@ import { API } from '../../core/api/api.config';
 export class ReportService {
   private baseUrl = API.baseUrl;
   private endPoint = API.reports;
+
+  private readonly notification = inject(ItNotificationService);
 
   constructor(private http: HttpClient) {}
 
@@ -42,11 +44,16 @@ export class ReportService {
   }
 
   create(report: CreateReportDto): Observable<ApiWrapperResponse<Report>> {
-    return this.http.post<ApiWrapperResponse<Report>>(`${this.baseUrl}${this.endPoint}`, report);
+    return this.http
+      .post<ApiWrapperResponse<Report>>(`${this.baseUrl}${this.endPoint}`, report)
+      .pipe(tap((res) => this.notification.success('Segnalazione inviata')));
   }
 
   update(id: string, report: UpdateReportDto): Observable<ApiWrapperResponse<Report>> {
-    return this.http.put<ApiWrapperResponse<Report>>(`${this.baseUrl}${this.endPoint}/${id}`, report);
+    return this.http.put<ApiWrapperResponse<Report>>(
+      `${this.baseUrl}${this.endPoint}/${id}`,
+      report,
+    );
   }
 
   updateStatus(id: string, body: UpdateStatusDto): Observable<ApiWrapperResponse<Report>> {

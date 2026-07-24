@@ -5,13 +5,10 @@ import {
   ItHeaderComponent,
   ItIconComponent,
   ItNavBarItemComponent,
-  ItCheckboxComponent,
-  ItRadioButtonComponent,
   ItButtonDirective,
-  ItLanguageSwitcherComponent,
 } from 'design-angular-kit';
 import { AuthService } from '../../core/auth/auth.service';
-import { UserMenu } from "../components/user-menu/user-menu";
+import { UserMenu } from '../components/user-menu/user-menu';
 
 @Component({
   selector: 'app-header',
@@ -22,12 +19,9 @@ import { UserMenu } from "../components/user-menu/user-menu";
     RouterLink,
     ItButtonDirective,
     RouterLinkActive,
-    ItCheckboxComponent,
-    ItRadioButtonComponent,
     FormsModule,
-    ItLanguageSwitcherComponent,
-    UserMenu
-],
+    UserMenu,
+  ],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })

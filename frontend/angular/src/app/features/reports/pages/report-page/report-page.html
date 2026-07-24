@@ -1,3 +1,211 @@
-<p>report-page works!</p>
+<div class="container py-5">
 
+  @if (createdPracticeCode()) {
 
+    <div class="alert alert-success">
+      <h2>Segnalazione inviata!</h2>
+
+      <p>
+        Codice pratica:
+        <strong>{{ createdPracticeCode() }}</strong>
+      </p>
+
+      <button
+        class="btn btn-primary"
+        type="button"
+        (click)="newReport()">
+        Nuova segnalazione
+      </button>
+
+    </div>
+
+  } @else {
+
+    <h1 class="mb-4">Nuova segnalazione</h1>
+
+    @if (loadError()) {
+
+      <div class="alert alert-danger">
+        {{ loadError() }}
+      </div>
+
+    }
+
+    @if (submitError()) {
+
+      <div class="alert alert-danger">
+        {{ submitError() }}
+      </div>
+
+    }
+
+    <form
+      [formGroup]="form"
+      (ngSubmit)="submit()"
+      novalidate>
+
+      <div class="row g-3">
+
+        <div class="col-md-6">
+
+          <label class="form-label">
+            Nome
+          </label>
+
+          <input
+            class="form-control"
+            type="text"
+            formControlName="firstname">
+
+          @if (f.firstname.touched && f.firstname.invalid) {
+            <div class="text-danger small">
+              Nome non valido
+            </div>
+          }
+
+        </div>
+
+        <div class="col-md-6">
+
+          <label class="form-label">
+            Cognome
+          </label>
+
+          <input
+            class="form-control"
+            type="text"
+            formControlName="lastname">
+
+          @if (f.lastname.touched && f.lastname.invalid) {
+            <div class="text-danger small">
+              Cognome non valido
+            </div>
+          }
+
+        </div>
+
+        <div class="col-md-6">
+
+          <label class="form-label">
+            Email
+          </label>
+
+          <input
+            class="form-control"
+            type="email"
+            formControlName="email">
+
+        </div>
+
+        <div class="col-md-6">
+
+          <label class="form-label">
+            Telefono
+          </label>
+
+          <input
+            class="form-control"
+            type="text"
+            formControlName="phone">
+
+        </div>
+
+        <div class="col-12">
+
+          <label class="form-label">
+            Categoria
+          </label>
+
+          <select
+            class="form-select"
+            formControlName="categoryId">
+
+            <option value="">
+              Seleziona...
+            </option>
+
+            @for (category of categories(); track category.id) {
+
+              <option [value]="category.id">
+                {{ category.name }}
+              </option>
+
+            }
+
+          </select>
+
+        </div>
+
+        <div class="col-12">
+
+          <label class="form-label">
+            Indirizzo
+          </label>
+
+          <input
+            class="form-control"
+            type="text"
+            formControlName="street">
+
+        </div>
+
+        <div class="col-12">
+
+          <label class="form-label">
+            Descrizione
+          </label>
+
+          <textarea
+            rows="5"
+            class="form-control"
+            formControlName="description">
+          </textarea>
+
+        </div>
+
+        <div class="col-12">
+
+          <div class="form-check">
+
+            <input
+              id="privacy"
+              class="form-check-input"
+              type="checkbox"
+              formControlName="privacyConsent">
+
+            <label
+              class="form-check-label"
+              for="privacy">
+
+              Accetto il trattamento dei dati personali.
+
+            </label>
+
+          </div>
+
+        </div>
+
+        <div class="col-12">
+
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="submitting()">
+
+            @if (submitting()) {
+              Invio...
+            } @else {
+              Invia segnalazione
+            }
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </form>
+
+  }
+
+</div>

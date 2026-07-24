@@ -34,7 +34,7 @@
               <li>✔ Gestione da parte degli uffici competenti</li>
             </ul>
 
-            <a itButton="primary" class="w-100" routerLink="/new-report">
+            <a itButton="primary" class="w-100" [routerLink]="['/new-report']">
               Inizia la Segnalazione
             </a>
           </div>
@@ -65,7 +65,7 @@
               <li>✔ Ufficio assegnato e note</li>
             </ul>
 
-            <a itButton="success" class="w-100" routerLink="/search"> Cerca la tua pratica </a>
+            <a itButton="success" class="w-100" [routerLink]="['/search']"> Cerca la tua pratica </a>
           </div>
         </it-card>
       </div>
@@ -94,7 +94,7 @@
               <li>✔ Reportistica</li>
             </ul>
 
-            <a itButton="dark" class="w-100 dashboard-btn" routerLink="/dashboard">
+            <a itButton="dark" class="w-100 dashboard-btn" [routerLink]="['/dashboard']">
               Accedi alla Dashboard
             </a>
           </div>

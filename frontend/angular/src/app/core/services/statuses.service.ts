@@ -4,6 +4,7 @@ import { ApiWrapperResponse } from '../models/api-wrapper.model';
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
 import { API } from '../api/api.config';
+import { map } from 'rxjs/internal/operators/map';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,9 @@ export class StatusesService {
 
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<ApiWrapperResponse<Status[]>> {
-    return this.http.get<ApiWrapperResponse<Status[]>>(`${this.baseUrl}${this.endPoint}`);
+  getAll(): Observable<Status[]> {
+    return this.http.get<ApiWrapperResponse<Status[]>>(`${this.baseUrl}${this.endPoint}`).pipe(
+      map((response) => response.data)
+    );
   }
 }
