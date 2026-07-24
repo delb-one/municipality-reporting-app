@@ -1,8 +1,11 @@
-<div class="container py-5">
-
+<div class="container py-3">
   @if (createdPracticeCode()) {
+    <it-breadcrumb class="mb-4">
+      <it-breadcrumb-item href="/">Home</it-breadcrumb-item>
+      <it-breadcrumb-item href="/new-report" active="true">Nuova segnalazione</it-breadcrumb-item>
+    </it-breadcrumb>
 
-    <div class="alert alert-success">
+    <it-alert color="success" class="mb-4">
       <h2>Segnalazione inviata!</h2>
 
       <p>
@@ -10,202 +13,167 @@
         <strong>{{ createdPracticeCode() }}</strong>
       </p>
 
-      <button
-        class="btn btn-primary"
-        type="button"
-        (click)="newReport()">
-        Nuova segnalazione
-      </button>
-
-    </div>
-
+      <button itButton="primary" type="button" (click)="newReport()">Nuova segnalazione</button>
+    </it-alert>
   } @else {
+    <it-breadcrumb class="mb-4">
+      <it-breadcrumb-item href="/">Home</it-breadcrumb-item>
+      <it-breadcrumb-item href="/new-report" active="true">Nuova segnalazione</it-breadcrumb-item>
+    </it-breadcrumb>
 
-    <h1 class="mb-4">Nuova segnalazione</h1>
+    <h1>Nuova segnalazione</h1>
+    <h5 class="mb-4">Compila il modulo per inviare una segnalazione al Comune.</h5>
 
     @if (loadError()) {
-
-      <div class="alert alert-danger">
+      <it-alert color="danger" class="mb-4">
         {{ loadError() }}
-      </div>
-
+      </it-alert>
     }
 
     @if (submitError()) {
-
-      <div class="alert alert-danger">
+      <it-alert color="danger" class="mb-4">
         {{ submitError() }}
-      </div>
-
+      </it-alert>
     }
 
-    <form
-      [formGroup]="form"
-      (ngSubmit)="submit()"
-      novalidate>
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <it-card>
+            <div class="it-card-body">
+              <h3 class="it-card-title mb-5">Dati richiedente</h3>
+              <div class="row g-3">
+                <div class="col-12 col-md-6">
+                  <it-input
+                    formControlName="firstname"
+                    label="Nome"
+                    placeholder="Inserisci il nome"
+                    [validationMode]="true"
+                  >
+                    <span error *ngIf="f.firstname.touched && f.firstname.invalid">
+                      Nome non valido
+                    </span>
+                  </it-input>
+                </div>
 
-      <div class="row g-3">
+                <div class="col-12 col-md-6">
+                  <it-input
+                    formControlName="lastname"
+                    label="Cognome"
+                    placeholder="Inserisci il cognome"
+                    [validationMode]="true"
+                  >
+                    <span error *ngIf="f.lastname.touched && f.lastname.invalid">
+                      Cognome non valido
+                    </span>
+                  </it-input>
+                </div>
 
-        <div class="col-md-6">
+                <div class="col-12 col-md-6">
+                  <it-input
+                    formControlName="email"
+                    type="email"
+                    label="Email"
+                    placeholder="Inserisci l'email"
+                    [validationMode]="true"
+                  >
+                    <span error *ngIf="f.email.touched && f.email.invalid"> Email non valida </span>
+                  </it-input>
+                </div>
 
-          <label class="form-label">
-            Nome
-          </label>
-
-          <input
-            class="form-control"
-            type="text"
-            formControlName="firstname">
-
-          @if (f.firstname.touched && f.firstname.invalid) {
-            <div class="text-danger small">
-              Nome non valido
+                <div class="col-12 col-md-6">
+                  <it-input
+                    formControlName="phone"
+                    type="tel"
+                    label="Telefono"
+                    placeholder="Inserisci il numero di telefono"
+                    [validationMode]="true"
+                  >
+                    <span error *ngIf="f.phone.touched && f.phone.invalid">
+                      Telefono non valido
+                    </span>
+                  </it-input>
+                </div>
+              </div>
             </div>
-          }
-
+          </it-card>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-lg-6">
+          <it-card>
+            <div class="it-card-body">
+              <h3 class="it-card-title mb-5">Dati segnalazione</h3>
+              <div class="row g-3">
+                <div class="col-12">
+                  <it-select
+                    formControlName="categoryId"
+                    label="Categoria"
+                    placeholder="Seleziona una categoria"
+                    [options]="
+                      categories().map((category) => ({ value: category.id, text: category.name }))
+                    "
+                    defaultOption="Seleziona..."
+                    [validationMode]="true"
+                  >
+                    <span error *ngIf="f.categoryId.touched && f.categoryId.invalid">
+                      Seleziona una categoria
+                    </span>
+                  </it-select>
+                </div>
 
-          <label class="form-label">
-            Cognome
-          </label>
+                <div class="col-12">
+                  <it-input
+                    formControlName="street"
+                    label="Indirizzo"
+                    placeholder="Inserisci l'indirizzo"
+                    [validationMode]="true"
+                  >
+                    <span error *ngIf="f.street.touched && f.street.invalid">
+                      Indirizzo non valido
+                    </span>
+                  </it-input>
+                </div>
 
-          <input
-            class="form-control"
-            type="text"
-            formControlName="lastname">
-
-          @if (f.lastname.touched && f.lastname.invalid) {
-            <div class="text-danger small">
-              Cognome non valido
+                <div class="col-12">
+                  <it-textarea
+                    formControlName="description"
+                    label="Descrizione"
+                    placeholder="Descrivi brevemente il problema"
+                    [rows]="5"
+                    [validationMode]="true"
+                  >
+                    <span error *ngIf="f.description.touched && f.description.invalid">
+                      Aggiungere una descrizione di almeno 10 caratteri
+                    </span>
+                  </it-textarea>
+                </div>
+              </div>
             </div>
-          }
-
+          </it-card>
         </div>
+      </div>
 
-        <div class="col-md-6">
-
-          <label class="form-label">
-            Email
-          </label>
-
-          <input
-            class="form-control"
-            type="email"
-            formControlName="email">
-
-        </div>
-
-        <div class="col-md-6">
-
-          <label class="form-label">
-            Telefono
-          </label>
-
-          <input
-            class="form-control"
-            type="text"
-            formControlName="phone">
-
+      <div class="row g-3 mt-4">
+        <div class="col-12">
+          <it-checkbox
+            formControlName="privacyConsent"
+            label=" Acconsento al trattamento dei miei dati personali ai sensi del
+                      D.Lgs. 196/2003 e del
+                      Regolamento UE 2016/679 (GDPR) per la gestione della
+                      presente segnalazione."
+          ></it-checkbox>
         </div>
 
         <div class="col-12">
-
-          <label class="form-label">
-            Categoria
-          </label>
-
-          <select
-            class="form-select"
-            formControlName="categoryId">
-
-            <option value="">
-              Seleziona...
-            </option>
-
-            @for (category of categories(); track category.id) {
-
-              <option [value]="category.id">
-                {{ category.name }}
-              </option>
-
-            }
-
-          </select>
-
-        </div>
-
-        <div class="col-12">
-
-          <label class="form-label">
-            Indirizzo
-          </label>
-
-          <input
-            class="form-control"
-            type="text"
-            formControlName="street">
-
-        </div>
-
-        <div class="col-12">
-
-          <label class="form-label">
-            Descrizione
-          </label>
-
-          <textarea
-            rows="5"
-            class="form-control"
-            formControlName="description">
-          </textarea>
-
-        </div>
-
-        <div class="col-12">
-
-          <div class="form-check">
-
-            <input
-              id="privacy"
-              class="form-check-input"
-              type="checkbox"
-              formControlName="privacyConsent">
-
-            <label
-              class="form-check-label"
-              for="privacy">
-
-              Accetto il trattamento dei dati personali.
-
-            </label>
-
-          </div>
-
-        </div>
-
-        <div class="col-12">
-
-          <button
-            class="btn btn-primary"
-            type="submit"
-            [disabled]="submitting()">
-
+          <button itButton="primary" type="submit" [disabled]="submitting()">
             @if (submitting()) {
               Invio...
             } @else {
               Invia segnalazione
             }
-
           </button>
-
         </div>
-
       </div>
-
     </form>
-
   }
-
 </div>

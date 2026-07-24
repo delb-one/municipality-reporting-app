@@ -1,4 +1,5 @@
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { CategoriesService } from '../../../../core/services/categories.service';
 import { ReportService } from '../../report.service';
 import {
@@ -12,10 +13,27 @@ import {
 import { Category } from '../../../categories/models/category.model';
 import { forkJoin } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import {
+  ItAlertComponent,
+  ItBreadcrumbComponent,
+  ItBreadcrumbItemComponent,
+  ItButtonDirective,
+  ItCardComponent,
+  ItFormModule,
+} from 'design-angular-kit';
 
 @Component({
   selector: 'app-report-page',
-  imports: [ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    ItAlertComponent,
+    ItBreadcrumbComponent,
+    ItBreadcrumbItemComponent,
+    ItButtonDirective,
+    ItCardComponent,
+    ItFormModule,
+  ],
   templateUrl: './report-page.html',
   styleUrl: './report-page.css',
 })
@@ -112,7 +130,6 @@ export class ReportPage implements OnInit {
 
   submit(): void {
     const statusId = this.defaultStatusId();
-   
 
     if (this.form.invalid) {
       const invalidControls = Object.entries(this.form.controls)
@@ -123,9 +140,8 @@ export class ReportPage implements OnInit {
           value: control.value,
         }));
 
-     
-
       this.form.markAllAsTouched();
+      this.form.updateValueAndValidity();
       return;
     }
 

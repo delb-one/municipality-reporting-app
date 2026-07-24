@@ -46,7 +46,14 @@ export class ReportService {
   create(report: CreateReportDto): Observable<ApiWrapperResponse<Report>> {
     return this.http
       .post<ApiWrapperResponse<Report>>(`${this.baseUrl}${this.endPoint}`, report)
-      .pipe(tap((res) => this.notification.success('Segnalazione inviata')));
+      .pipe(
+        tap((res) =>
+          this.notification.success(
+            'Segnalazione inviata',
+            'Codice pratica: ' + res.data.practiceCode,
+          ),
+        ),
+      );
   }
 
   update(id: string, report: UpdateReportDto): Observable<ApiWrapperResponse<Report>> {
